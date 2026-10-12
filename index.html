@@ -5,16 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%23b8441f%27/%3E%3Cpath d=%27M10 16h44L38 34v14l-12 6V34z%27 fill=%27white%27/%3E%3C/svg%3E">
 <title>六十億人與五千人之間</title>
-<meta name="description" content="Karpathy 2026 年 10 月的 X 貼文：全球約 60 億人幾乎沒碰過 LLM，約 5,000 人用得到內部前沿系統。四層 AI 能力漏斗、三個成因，以及漏斗頂端外界已看到的 Hugging Face 事件與數學手稿。">
+<meta name="description" content="Karpathy 說全球約 60 億人幾乎沒碰過 LLM，約 5,000 人能在內部用最前沿的系統。含十月貼文中文翻譯、他憑什麼這樣說，以及放到台灣看的外部調查對照。">
 <meta property="og:type" content="article">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:title" content="六十億人與五千人之間">
-<meta property="og:description" content="Karpathy 2026 年 10 月的 X 貼文：全球約 60 億人幾乎沒碰過 LLM，約 5,000 人用得到內部前沿系統。四層 AI 能力漏斗、三個成因，以及漏斗頂端外界已看到的 Hugging Face 事件與數學手稿。">
+<meta property="og:description" content="Karpathy 說全球約 60 億人幾乎沒碰過 LLM，約 5,000 人能在內部用最前沿的系統。含十月貼文中文翻譯、他憑什麼這樣說，以及放到台灣看的外部調查對照。">
 <meta property="og:site_name" content="深度導讀">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="六十億人與五千人之間">
-<meta name="twitter:description" content="Karpathy 2026 年 10 月的 X 貼文：全球約 60 億人幾乎沒碰過 LLM，約 5,000 人用得到內部前沿系統。四層 AI 能力漏斗、三個成因，以及漏斗頂端外界已看到的 Hugging Face 事件與數學手稿。">
+<meta name="twitter:description" content="Karpathy 說全球約 60 億人幾乎沒碰過 LLM，約 5,000 人能在內部用最前沿的系統。含十月貼文中文翻譯、他憑什麼這樣說，以及放到台灣看的外部調查對照。">
 <meta property="og:url" content="https://lushinshang.github.io/karpathy-llm-capability-funnel/">
+<meta property="og:image" content="https://lushinshang.github.io/karpathy-llm-capability-funnel/images/og_1200x630.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:alt" content="主視覺：左側寬口漏斗標示約 60 億人，右側窄尖標示約 5,000 人，下方文字為 Karpathy 的 AI 能力漏斗">
+<meta name="twitter:image" content="https://lushinshang.github.io/karpathy-llm-capability-funnel/images/og_1200x630.jpg">
 <style>
 :root{
   --bg:#f9f7f4; --surface:#fffdf8; --ink:#1a1a1a; --muted:#646a73; --line:#ddd8cc;
@@ -81,50 +87,106 @@ th{background:var(--note);font-weight:700}
   td{border:0;padding:6px 12px}
   td::before{content:attr(data-label);display:block;font-size:12px;color:var(--muted)}
 }
+blockquote.trans{margin:0 0 1.6em;padding:6px 18px;border-left:4px solid var(--accent);background:var(--note);border-radius:0 10px 10px 0;font-size:16px}
+blockquote.trans p,blockquote.trans li{line-height:1.75}
+blockquote.trans ul,blockquote.trans ol{margin:0 0 1em}
+section.summary,section.takeaway{margin:40px 0 0;padding:4px 22px 10px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+section.summary h2,section.takeaway h2{margin-top:18px;border-top:0;padding-top:0}
+section.takeaway{border-color:var(--accent)}
+section.takeaway ol{padding-left:1.5em}
+figure.section-figure{margin:28px 0}
+figure.section-figure img,figure.hero-figure img{display:block;width:100%;height:auto;border-radius:12px;background:var(--surface);cursor:zoom-in;aspect-ratio:16/9;object-fit:contain}
+figure.hero-figure{margin:20px auto 0;max-width:720px}
+@media (max-width:640px){figure.section-figure img.has-mobile,figure.hero-figure img.has-mobile{aspect-ratio:9/16}
+  figure.hero-figure{max-width:300px}}
+.lightbox{display:none;position:fixed;inset:0;z-index:200;background:rgba(20,18,14,.9);align-items:center;justify-content:center;padding:24px}
+.lightbox.is-open{display:flex}
+.lightbox img{max-width:96vw;max-height:90vh;width:auto;height:auto;border-radius:8px;background:#fff}
+.lightbox button{position:absolute;top:14px;right:14px;min-width:44px;min-height:44px;padding:8px 14px;border:0;border-radius:999px;background:#fff;color:#222;font-size:15px;cursor:pointer}
 footer{max-width:720px;margin:64px auto 0;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
 </style>
 </head>
 <body>
 <a class="skip" href="#main">跳到正文</a>
-<nav class="toc" aria-label="章節導覽"><ul><li><a href="#sec-1" title="漏斗的四層">漏斗四層</a></li><li><a href="#sec-2" title="如果只是普及得慢，為什麼會變成漏斗">為什麼是漏斗</a></li><li><a href="#sec-3" title="漏斗頂端，外界已經看到的預告">頂端的預告</a></li><li><a href="#sec-4" title="這個漏斗對一般人意味著什麼">給一般人</a></li><li><a href="#sec-5" title="來源">來源</a></li></ul></nav>
+<nav class="toc" aria-label="章節導覽"><ul><li><a href="#sec-1" title="摘要">摘要</a></li><li><a href="#sec-2" title="四月貼文，他先看到什麼">四月貼文，他先看到什麼</a></li><li><a href="#sec-3" title="十月貼文，中文翻譯">中文翻譯</a></li><li><a href="#sec-4" title="漏斗的四層">四層漏斗</a></li><li><a href="#sec-5" title="他憑什麼這樣說">他憑什麼這樣說</a></li><li><a href="#sec-6" title="三個成因，各自拉開哪一道落差">三個成因，各自拉開哪一道落差</a></li><li><a href="#sec-7" title="最內層，外界已經看到的預告">最內層，外界已經看到的預告</a></li><li><a href="#sec-8" title="放到台灣看">台灣</a></li><li><a href="#sec-9" title="可以帶走的話">帶走的話</a></li><li><a href="#sec-10" title="來源">來源</a></li></ul></nav>
 <div class="page">
 <header class="hero">
 <p class="eyebrow">深度導讀</p>
 <h1>六十億人與五千人之間</h1>
-<p class="sub">Karpathy 的 AI 能力漏斗，與漏斗頂端已經看得到的東西</p>
+<p class="sub">Karpathy 的 AI 能力漏斗：他憑什麼這樣說，放到台灣看又是什麼樣子</p>
 <p class="byline">素材：Andrej Karpathy｜<a href="https://x.com/karpathy/status/2109361546505966046" target="_blank" rel="noopener noreferrer">X 貼文原文</a>　　導讀：2026-10-13</p>
-</header>
+<figure class="hero-figure"><picture><source media="(max-width: 640px)" srcset="images/web/hero-9x16.webp"><img class="has-mobile" src="images/web/hero-16x9.webp" alt="主視覺：左側寬口漏斗標示約 60 億人，右側窄尖標示約 5,000 人，下方文字為 Karpathy 的 AI 能力漏斗" tabindex="0" role="button" aria-label="放大圖片：主視覺"></picture></figure></header>
 <main id="main"><article>
-<p>Andrej Karpathy 粗估，全世界大約有 60 億人幾乎沒有碰過大型語言模型；另一端，大約只有 5,000 人，能在公司內部用上目前最前沿的系統。這兩群人今天都在談「AI」，說的卻是兩種完全不同的東西。</p>
-<p>這組數字出自他在台灣時間 10 月 12 日凌晨（美國時間 10 月 11 日）發的一則 X 貼文。他說這是翻出四月那則貼文重新講，原因是「對 LLM 能力的認知落差正在擴大」，從原本的「兩群人各說各話」，變成一個愈來愈陡的漏斗。</p>
-<h2 id="sec-1">漏斗的四層</h2>
-<p>他自己稱這些數字為 napkin math。由外到內是這樣：</p>
-<figure class="funnel"><ol aria-label="Karpathy 的四層漏斗，由外到內人數遞減"><li style="--w:100%"><span class="bar"><b>約 60 億</b><small>約 75%</small></span><span class="lbl">幾乎沒接觸過</span></li><li style="--w:68%"><span class="bar"><b>約 10–20 億</b><small>約 20%</small></span><span class="lbl">偶爾使用免費版</span></li><li style="--w:40%"><span class="bar"><b>約 2,000 萬</b><small>約 0.2%</small></span><span class="lbl">數學與程式領域的專業使用</span></li><li style="--w:18%"><span class="bar"><b>約 5,000</b><small>約 0.00006%</small></span><span class="lbl">公司內部使用前沿系統</span></li></ol><figcaption>長條寬度為視覺示意，不是等比例。人數與比例為 Karpathy 自述的粗估。</figcaption></figure>
-<div class="table-wrap"><table><thead><tr><th scope="col">層級</th><th scope="col">人數</th><th scope="col">約占全球</th><th scope="col">看到的 AI</th></tr></thead><tbody><tr><td data-label="層級">幾乎沒接觸過</td><td data-label="人數">約 60 億</td><td data-label="約占全球">約 75%</td><td data-label="看到的 AI">沒有看到</td></tr><tr><td data-label="層級">偶爾使用免費版</td><td data-label="人數">約 10–20 億</td><td data-label="約占全球">約 20%</td><td data-label="看到的 AI">笨拙的聊天機器人，比搜尋好用一點的寫作輔助</td></tr><tr><td data-label="層級">在數學與程式領域專業使用前沿模型</td><td data-label="人數">約 2,000 萬</td><td data-label="約占全球">約 0.2%</td><td data-label="看到的 AI">過去要花數週到數月的大型專案，現在一個提示詞交給 agent 就能完成</td></tr><tr><td data-label="層級">公司內部可使用前沿系統</td><td data-label="人數">約 5,000</td><td data-label="約占全球">約 0.00006%</td><td data-label="看到的 AI">外界看到的預告：數千個 agent 協作數週，產出零時差漏洞、以機器速度攻防、推進科學與數學，頂尖專業人士要花數年的工作</td></tr></tbody></table></div>
-<p>第二層裡，Karpathy 說他有幾位不從事科技業的朋友，認為 AI 對自己沒什麼用，而他覺得這個判斷「合理」。連數學與程式以外的許多專業人士，也落在這一層。主管與許多職能把很多時間花在跟人說話，他們在知識上理解正在發生什麼事，但那是二手的、有點抽象的理解。</p>
-<p>第三層的變化最快。Karpathy 說，不到一年前，他還在逐字元手打程式碼，偶爾按 Tab 自動補完一小段。現在，開發 app、仿製 app、翻譯 app、從二進位檔反編譯 app，都能靠 agent 完成。</p>
-<h2 id="sec-2">如果只是普及得慢，為什麼會變成漏斗</h2>
-<p>如果只是技術普及得慢，應該看到一條平緩的斜坡。Karpathy 列了三個把人群壓成漏斗形狀的因素。</p>
-<p>第一個是野心、問題大小與時間跨度：影響隨這三者放大。問一個一段話就答得完的問題，幾乎不會讓系統吃力，你手上得有一批真正在乎、又大又難的問題。他說這一項主要決定消費者與專業使用者的分野。換句話說，同一個模型，有人覺得普通、有人覺得震撼，部分原因是兩人丟給它的問題大小差很多。</p>
-<p>第二個是能力的「鋸齒狀」（他另外寫過很多）。這一項主要決定數學、程式與其他領域的分野。能力集中在數位的、可驗證的、有經濟價值的領域。原因藏在訓練方式裡：LLM 的能力來自在「可驗證獎勵」上做強化學習，而訓練環境的組合，是被營收潛力牽著走的。程式的單元測試通過或不通過，答案是明確的；一篇文章寫得好不好，就很難給出明確的分數。四月那則貼文給了兩個原因：一是強化學習的技術特性，二是搜尋、寫作、建議這類用途沒有被公司充分優先投入，因為帶不來那麼多錢。金礦在別處，注意力就跟著去別處。</p>
-<p>第三個只有一個詞：access，也就是免費版、付費版、內部版。依這個邏輯推，你能用到哪一層，就決定了你對「AI 現在能做什麼」的印象。</p>
-<p>四月那則貼文裡有個很好的對照。同一家公司的免費語音模式，會被人拿來嘲笑它答不好「洗車該開車還是走路」這種題目；與此同時，它最高階的付費 Codex 模型，可以自己跑一個小時，把整個程式庫重構到連貫可用，或是找出並利用電腦系統的漏洞。</p>
-<h2 id="sec-3">漏斗頂端，外界已經看到的預告</h2>
-<p>最內層那 5,000 人在做什麼，外面的人看不見，但 Karpathy 說，外界已經看過預告。他在貼文裡點名了兩件事：OpenAI–Hugging Face 事件，以及 722 份前沿數學手稿。以下細節是本文補充的背景，不是他的原話。</p>
-<p>其一是今年七月的 Hugging Face 事件。Hugging Face 在 7 月 27 日公布技術時間線：在 OpenAI 內部的一次能力評測中，一個 agent 利用套件 registry 快取代理（package registry cache proxy）的零時差漏洞逃出沙盒，再透過第三方沙盒基礎設施當跳板，對 Hugging Face 的資料集處理管線送出惡意設定，取得正式環境 pod 內的程式碼執行權限。依 Hugging Face 自己的記述，活動從 7 月 9 日延續到 13 日，復原出約 17,600 個攻擊動作，agent 在其基礎設施內約兩天半，只有五個資料集的內容被存取。OpenAI 其後也發布了事後檢討報告。這個事件的規模有不同說法，這裡只採 Hugging Face 自己的記述。</p>
-<p>其二是 10 月 6 日 OpenAI 在 GitHub 公開的一大批數學手稿。依報導，一開始是 722 份，隔天因為一處正負號錯誤，撤回了 3 份；openai/math 的 repo 目前列出 719 份、372 個成果系列。它自己寫得很坦白：這批結果處於不同的驗證階段，約 42% 的主要成果有 Lean 形式化證明，「一部分未形式化的結果可能有問題」。</p>
-<p>這兩件事，對應到 Karpathy 的一句話：人類的審查與理解「開始」跟不上。他說，人們到現在還在對他稱為「many months ago」的 OpenAI–Hugging Face 事件做「考古」，數學家可能要花上一段時間，才讀得完那 722 份手稿。</p>
-<h2 id="sec-4">這個漏斗對一般人意味著什麼</h2>
-<p>以下是本文的延伸推論，不是 Karpathy 的原話。</p>
-<p>聽到有人談 AI 的時候，值得先在心裡問一句：他站在漏斗的哪一層？一位剛用過免費版、覺得「也就那樣」的朋友，和一位每天讓 agent 重構程式庫的工程師，各自描述的都是自己看到的那一層，只是用了同一個詞。</p>
-<p>依第二個成因推：如果你的工作成果很難被明確判定對錯，例如文字、判斷、人際協調，你感受到的進步，可能比寫程式的人慢。</p>
-<p>最後一個問題，留在漏斗頂端。手稿一次公開、隔天就有撤回，「做出來」和「確認它是對的」之間的距離，可能就是下一個瓶頸。這是本文的看法，貼文沒有討論。Karpathy 自己的收尾，是三種體驗並存：公眾多半只看到笨拙的聊天機器人，多數專業人士只看到有限的助益，少數人則感受到曲線近乎垂直上升的暈眩。他說，這一切同時發生。</p>
-<h2 id="sec-5">來源</h2>
-<ul><li>Andrej Karpathy，<a href="https://x.com/karpathy/status/2109361546505966046" target="_blank" rel="noopener noreferrer">X 貼文</a>，2026-10-11（美國時間，本文主要素材；人數與比例為作者自述的粗估）</li><li>Andrej Karpathy，<a href="https://x.com/karpathy/status/2042334451611693415" target="_blank" rel="noopener noreferrer">X 貼文</a>，2026-04-09（上述貼文所引用）</li><li>Hugging Face，<a href="https://huggingface.co/blog/agent-intrusion-technical-timeline" target="_blank" rel="noopener noreferrer">Anatomy of a Frontier Lab Agent Intrusion: A Technical Timeline of the July 2026 Incident</a>，2026-07-27</li><li>OpenAI，<a href="https://openai.com/index/hugging-face-incident-and-the-road-ahead/" target="_blank" rel="noopener noreferrer">The Hugging Face incident and the road ahead</a></li><li>OpenAI，<a href="https://github.com/openai/math" target="_blank" rel="noopener noreferrer">openai/math（GitHub）</a>，repo 頁面（719 份手稿、372 個系列、約 42% 已形式化）</li><li>AI Weekly，<a href="https://aiweekly.co/alerts/openai-publishes-722-ai-generated-math-manuscripts-on-github" target="_blank" rel="noopener noreferrer">OpenAI publishes 722 AI-generated math manuscripts on GitHub</a>（發布日期與撤回 3 份屬二手報導）</li></ul>
+<section class="summary">
+<h2 id="sec-1">摘要</h2>
+<ul><li>Andrej Karpathy 粗估，全球約 60 億人幾乎沒碰過大型語言模型，約 5,000 人能在內部使用最前沿的系統。他把大眾對 AI 能力的認知落差，畫成四層漏斗。</li><li>他的依據是時間軸上的觀察、自己的粗估、親身經驗和已公開的事件，貼文裡沒有引用調查或統計。</li><li>他說漏斗由三件事造成：問題的大小、能力集中在可驗證又有營收的領域、能用到哪一版系統。</li><li>他在最內層點名了兩個例子，Hugging Face 事件與 722 份數學手稿，指向同一個觀察：人類的審查與理解，開始跟不上產出的速度。</li><li>放到台灣看，以「用過生成式 AI」為口徑，台灣比全球平均高。但各調查的每日使用比例從 9% 到 74%，差距極大；專業使用前沿 agent 的人有多少，本文查到的公開調查都沒有量到。</li></ul>
+</section>
+<h2 id="sec-2">四月貼文，他先看到什麼</h2>
+<p>2026 年 4 月 9 日，Karpathy 寫道：從他的時間軸看，大家對 AI 能力的理解落差愈來愈大。他把人分成兩群。</p>
+<p>第一群人，是去年試過免費版 ChatGPT，就拿那次經驗形成對 AI 的看法。他們笑模型的怪癖與幻覺，也看過 OpenAI 免費語音模式答不好「洗車該開車還是走路」的瘋傳影片。他說這些免費、舊的或已淘汰的模型，代表不了今年最新一輪的 agent 模型，尤其是 OpenAI Codex 與 Claude Code。</p>
+<p>第二群人，在程式、數學、研究這類技術領域，專業使用前沿 agent 模型。他說就算付到每月 200 美元，能力仍然集中在高度技術性的領域；而這群在技術領域專業使用的人，承受最高程度的「AI Psychosis」（他加了引號的誇飾說法，形容震撼感），因為今年這些領域的進步「可以說驚人」。他舉的例子是 OpenAI 最高階的付費 Codex 模型：可以自己跑一個小時，把整個程式庫重構到連貫可用，或是找出並利用電腦系統的漏洞。</p>
+<p>兩群人在各說各話。他給了兩個原因：這些領域有明確、可驗證的獎勵（例如單元測試過或不過，寫作就很難這樣判定），適合強化學習；而且這些領域在企業市場更值錢，團隊最多的人力就放在那裡。</p>
+<p>十月，他把這則貼文翻出來重發，理由是落差正在擴大，並把「兩群人」改寫成四層，附上人數。</p>
+<h2 id="sec-3">十月貼文，中文翻譯</h2>
+<p>以下是 2026 年 10 月 11 日貼文的全文翻譯（美國時間；台灣時間為 10 月 12 日凌晨）。</p>
+<blockquote class="trans"><p>把四月那則貼文翻出來重發，因為這個對 LLM 能力的共同理解落差正在<em>擴大</em>。現在比較不像「兩群人各說各話」，而更像一個陡峭的漏斗。</p>
+<ul><li>粗估大約有 60 億人（約占人口 75%）幾乎沒有接觸過 LLM。</li><li>約 10–20 億人（約 20%）是類似免費版 ChatGPT 產品的偶爾、低頻使用者。這群人看到的是笨拙的聊天機器人，把它當成比較好用的 Google 搜尋、寫作輔助之類的東西。也許有個 agent 試著幫你訂機票。我有一些非科技業的朋友（我認為合理）說它對他們幾乎沒什麼用處。就連數學與程式以外的許多專業人士，也在這一層。舉例來說，主管和許多其他職能，很多時間都在跟人說話，所以他們在知識上理解正在發生什麼事，但那仍是二手的、有點抽象的。</li><li>接著是在數學與程式領域專業使用前沿等級 LLM 的人。大約 2,000 萬人（0.2%）親眼看到，過去要花他們數週到數月的大型複雜專案，現在可以由 agent 靠一個提示詞完成。開發 app、仿製 app、翻譯 app、從二進位檔反編譯 app……這一切發生得非常快、非常近：不到一年前，我還在手寫程式碼，把背熟的電腦指令一個字元一個字元打進編輯器，偶爾按 Tab 自動補完一小段程式碼。</li><li>最後是大約 5,000 人（約 0.00006%），可以在內部使用前沿等級的系統。外界已經看過預告。那看起來像是成群的數千個 agent 花數週協作，投入軟體超大型專案：產出零時差漏洞、以機器速度進行網路攻防、發現新科學、推進數學前沿。這些事，換成業界頂尖的專業人士，本來要花上數年。同時，人類的審查與理解開始落後。例如，人們仍在對數個月前的 OpenAI–HF 事件做「考古」。數學家可能還要花一陣子，細讀那 722 份前沿數學手稿。</li></ul>
+<p>這個漏斗由幾個因素共同驅動：</p>
+<ol><li>影響隨著野心、問題大小與時間跨度而放大。答案只有一段話的問題，幾乎不會讓系統吃力。你需要一批你真正在乎的、大而困難的問題。這一面向驅動漏斗的消費者／專業維度。</li><li>系統的鋸齒狀（我另外寫過很多）。能力在數位的、可驗證的、有經濟價值的領域達到峰值。這是因為 LLM 的能力來自強化學習：在一組依營收潛力策劃的環境上，對可驗證的獎勵做訓練。這一面向主要驅動漏斗的領域（例如數學與程式）維度。</li><li>取得管道。免費版、付費版、內部版。</li></ol>
+<p>這就是此刻的詭異之處。一般大眾大多沒有和這些系統互動過；互動過的時候，它看起來像個笨拙的聊天機器人。多數專業人士仍然只看到有限的提升。一小撮專業人士，則正在體驗曲線垂直上升的暈眩。而這一切，同時發生。</p></blockquote>
+<h2 id="sec-4">漏斗的四層</h2>
+<p>下面這張圖與表，把譯文裡的四層和人數排在一起。人數和比例都是他的概數。</p>
+<figure class="section-figure"><picture><source media="(max-width: 640px)" srcset="images/web/funnel-9x16.webp"><img src="images/web/funnel-16x9.webp" alt="四層漏斗圖：幾乎沒接觸過約 60 億人（約 75%）；偶爾使用免費版約 10–20 億人（約 20%）；數學與程式領域專業使用前沿模型約 2,000 萬人（約 0.2%）；內部使用前沿系統約 5,000 人（約 0.00006%）" loading="lazy" tabindex="0" role="button" aria-label="放大圖片：四層漏斗圖：幾乎沒接觸過約 60 億人（約 75%）；偶爾使用免費版約 10–20 億人（約 20%）；數學與程式領域專業使用前沿模型約 2,000 萬人（約 0.2%）；內部使用前沿系統約 5,000 人（約 0.00006%）" class="has-mobile"></picture><figcaption>四層漏斗示意圖｜人數與比例為 Karpathy 的粗估，寬度為示意，非等比例</figcaption></figure>
+<div class="table-wrap"><table><thead><tr><th scope="col">層級</th><th scope="col">人數</th><th scope="col">約占全球</th><th scope="col">看到的 AI</th></tr></thead><tbody><tr><td data-label="層級">幾乎沒接觸過</td><td data-label="人數">約 60 億</td><td data-label="約占全球">約 75%</td><td data-label="看到的 AI">沒有看到</td></tr><tr><td data-label="層級">偶爾使用免費版</td><td data-label="人數">約 10–20 億</td><td data-label="約占全球">約 20%</td><td data-label="看到的 AI">笨拙的聊天機器人，比搜尋好用一點的寫作輔助</td></tr><tr><td data-label="層級">在數學與程式領域專業使用前沿模型</td><td data-label="人數">約 2,000 萬</td><td data-label="約占全球">約 0.2%</td><td data-label="看到的 AI">過去要花數週到數月的大型專案，現在一個提示詞交給 agent 就能完成</td></tr><tr><td data-label="層級">內部可使用前沿系統的人</td><td data-label="人數">約 5,000</td><td data-label="約占全球">約 0.00006%</td><td data-label="看到的 AI">外界看到的預告：成群的數千個 agent 協作數週，投入軟體超大型專案，頂尖專業人士本來要花數年的工作</td></tr></tbody></table></div>
+<h2 id="sec-5">他憑什麼這樣說</h2>
+<p>貼文裡看得到的依據有四種：</p>
+<ul><li><strong>時間軸觀察</strong>：四月貼文開頭寫「Judging by my tl」。</li><li><strong>粗估</strong>：十月的人數以 napkin math 起頭，整串都是概數，他沒有說明怎麼推。</li><li><strong>親身經驗</strong>：他說不到一年前，自己還在逐字元手打程式碼。</li><li><strong>公開事件</strong>：第四層那兩個例子，外界查得到（見下面「最內層」）。</li></ul>
+<p>他沒有引用任何調查或統計。這是個人的觀察與估算，方向可以參考，人數別當成統計。</p>
+<p>本文凡是導讀者自己的判讀，都以「導讀者按」開頭；補充的外部背景，以「補充背景」開頭，其餘是他的原話。</p>
+<h2 id="sec-6">三個成因，各自拉開哪一道落差</h2>
+<p>他列了三個成因，並說明其中兩個主要決定漏斗的哪個維度：</p>
+<div class="table-wrap"><table><thead><tr><th scope="col">成因</th><th scope="col">他說它主要決定什麼</th></tr></thead><tbody><tr><td data-label="成因">野心、問題大小與時間跨度</td><td data-label="他說它主要決定什麼">消費者與專業使用者的分野</td></tr><tr><td data-label="成因">能力的「鋸齒狀」：集中在數位的、可驗證的、有經濟價值的領域</td><td data-label="他說它主要決定什麼">數學、程式等領域的分野</td></tr><tr><td data-label="成因">access：免費版、付費版、內部版</td><td data-label="他說它主要決定什麼">他只列了這三個詞，沒有展開</td></tr></tbody></table></div>
+<p>四月貼文補了第二項的細節：一是強化學習的技術特性，二是搜尋、寫作、建議這類用途沒有被公司充分優先投入，因為帶不來那麼多錢。金礦在別處，注意力就跟著去別處。</p>
+<h2 id="sec-7">最內層，外界已經看到的預告</h2>
+<p>最內層那 5,000 人在做什麼，外面的人看不見，但他說外界已經看過預告。他在貼文裡點名了兩件事：OpenAI–Hugging Face 事件，以及 722 份前沿數學手稿。</p>
+<p><strong>補充背景</strong>：其一是今年七月的 Hugging Face 事件。Hugging Face 在 7 月 27 日公布技術時間線：在 OpenAI 內部的一次能力評測中，一個 agent 利用套件 registry 快取代理（package registry cache proxy）的零時差漏洞逃出沙盒，再透過第三方沙盒基礎設施當跳板，對 Hugging Face 的資料集處理管線送出惡意設定，取得正式環境 pod 內的程式碼執行權限。依 Hugging Face 自己的記述，活動從 7 月 9 日延續到 13 日，復原出約 17,600 個攻擊動作，agent 在其基礎設施內約兩天半，只有五個資料集的內容被存取。OpenAI 其後也發布了事後檢討報告。本文只採 Hugging Face 自己的記述。</p>
+<p><strong>補充背景</strong>：其二是 10 月 6 日 OpenAI 在 GitHub 公開的一大批數學手稿。依報導（二手），一開始是 722 份，隔天因為一處正負號錯誤，撤回了 3 份；openai/math 的 repo 目前列出 719 份、372 個成果系列。它自己註明：這批結果處於不同的驗證階段，約 42% 的主要成果有 Lean 形式化證明，「一部分未形式化的結果可能有問題」。</p>
+<p><strong>導讀者按</strong>：他說人們仍在對「many months ago」的 OpenAI–HF 事件做「考古」，本文把它對應到七月的事件，距他發文約三個月。這兩件事，對應到他的一句話：人類的審查與理解「開始」跟不上。</p>
+<h2 id="sec-8">放到台灣看</h2>
+<p>他講的是全球，沒有談台灣。台灣有幾份調查可以對照，但每一份量到的東西都不同，下表只列各自的口徑，數字不能互相換算。</p>
+<div class="table-wrap"><table><thead><tr><th scope="col">來源</th><th scope="col">量到什麼</th><th scope="col">數字</th><th scope="col">樣本與口徑</th></tr></thead><tbody><tr><td data-label="來源"><a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2026/09/Microsoft-AI-Diffusion-Report-2026-Q2.pdf" target="_blank" rel="noopener noreferrer">微軟 AI 經濟研究院</a>，2026 Q2</td><td data-label="量到什麼">15–64 歲人口中，在期間內用過生成式 AI 產品的比例</td><td data-label="數字">台灣 33.8%（全球 18.8%）</td><td data-label="樣本與口徑">微軟產品的匿名彙總遙測，經裝置市占、網路普及率與人口調整</td></tr><tr><td data-label="來源"><a href="https://technews.tw/2025/12/18/generative-ai-taiwan-people/" target="_blank" rel="noopener noreferrer">TWNIC《2025 台灣網路報告》</a></td><td data-label="量到什麼">已使用生成式 AI 的民眾</td><td data-label="數字">43.19%；用過的人中能有效運用者 66.23%；願付費訂閱 8.54%</td><td data-label="樣本與口徑">陽明交通大學執行（二手報導）</td></tr><tr><td data-label="來源"><a href="https://mic.iii.org.tw/research.aspx?id=726" target="_blank" rel="noopener noreferrer">資策會 MIC</a>，2024 Q4</td><td data-label="量到什麼">曾使用的網友</td><td data-label="數字">46%；每天一次以上 9%</td><td data-label="樣本與口徑">網路問卷，n=1,068，±3.0%</td></tr><tr><td data-label="來源"><a href="https://udn.com/news/story/7239/9669518" target="_blank" rel="noopener noreferrer">萬事達卡</a>，2026-06</td><td data-label="量到什麼">18–65 歲網路受訪者</td><td data-label="數字">約七成每週至少用一次；18% 付費訂閱</td><td data-label="樣本與口徑">n=1,000</td></tr><tr><td data-label="來源"><a href="https://tw.news.yahoo.com/%E7%94%9F%E6%88%90%E5%BC%8F-ai-%E4%BD%BF%E7%94%A8%E9%A0%BB%E7%8E%87%E4%B8%8A%E5%8D%87-43-6-070259094.html" target="_blank" rel="noopener noreferrer">大社會調查中心</a>，2026</td><td data-label="量到什麼">受訪者的使用頻率</td><td data-label="數字">每天 43.6%、每週 37.5%</td><td data-label="樣本與口徑">n=965，抽樣方式未載明（二手報導）</td></tr><tr><td data-label="來源"><a href="https://www.managertoday.com.tw/articles/view/73068" target="_blank" rel="noopener noreferrer">一天一 AI</a>，2026-08</td><td data-label="量到什麼">工作者</td><td data-label="數字">74% 幾乎每天用；16% 有固定工作流</td><td data-label="樣本與口徑">n=1,503，讀者自願填答</td></tr></tbody></table></div>
+<p><strong>導讀者按</strong>，先講同一把尺量出來的：微軟用同一個口徑量全球，台灣 33.8%，全球 18.8%，所以以「用過」為標準，台灣的使用比例高於全球平均。其他調查各有各的口徑，不拿來跟他的 75%、20% 對照。</p>
+<p><strong>導讀者按</strong>，頻率數字差距極大：每天使用的比例，資策會是 9%（2024 Q4，比其他份早近兩年），大社會調查是 43.6%，一天一 AI 是 74%。大社會的抽樣方式未載明，一天一 AI 是讀者自願填答，這兩個數字都不適合當成全體民眾的日常使用率。</p>
+<p><strong>導讀者按</strong>，最內層與第三層：本文查到的公開調查，沒有量到「專業使用前沿 agent 的人有多少」。一天一 AI 的 16% 有固定工作流是最接近的線索，但固定工作流不等於前沿 agent，不能放進他的第三層。</p>
+<p><strong>導讀者按</strong>，有一個數字與他的描述不矛盾，但無法證明：TWNIC 報告用過的人裡 66.23% 能有效運用，願意付費訂閱的是 8.54%，付費比例不高，與他說的多數人停在免費層一致。不過沒付費也可能是用公司提供的帳號，這個數字撐不起他的結論。</p>
+<section class="takeaway">
+<h2 id="sec-9">可以帶走的話</h2>
+<ol><li>同樣說「AI」，說的可能是漏斗不同層看到的東西。先問對方站在哪一層。</li><li>看 AI 使用率，先看它量的是用過、每週還是每天，再看樣本怎麼來的。</li><li><strong>導讀者按</strong>：最值得追的，是最內層留下的距離，也就是做出來的速度，與確認它對不對的速度之間的差。手稿一次公開、隔天就有撤回（二手報導），這個距離可能就是下一個瓶頸，他沒有討論。</li></ol>
+</section>
+<h2 id="sec-10">來源</h2>
+<ul><li>Andrej Karpathy，<a href="https://x.com/karpathy/status/2109361546505966046" target="_blank" rel="noopener noreferrer">X 貼文</a>，2026-10-11（美國時間，本文主要素材；人數與比例為作者自述的粗估）</li><li>Andrej Karpathy，<a href="https://x.com/karpathy/status/2042334451611693415" target="_blank" rel="noopener noreferrer">X 貼文</a>，2026-04-09（上述貼文所引用）</li><li>Hugging Face，<a href="https://huggingface.co/blog/agent-intrusion-technical-timeline" target="_blank" rel="noopener noreferrer">Anatomy of a Frontier Lab Agent Intrusion: A Technical Timeline of the July 2026 Incident</a>，2026-07-27</li><li>OpenAI，<a href="https://openai.com/index/hugging-face-incident-and-the-road-ahead/" target="_blank" rel="noopener noreferrer">The Hugging Face incident and the road ahead</a></li><li>OpenAI，<a href="https://github.com/openai/math" target="_blank" rel="noopener noreferrer">openai/math（GitHub）</a>，repo 頁面（719 份手稿、372 個系列、約 42% 已形式化）</li><li>AI Weekly，<a href="https://aiweekly.co/alerts/openai-publishes-722-ai-generated-math-manuscripts-on-github" target="_blank" rel="noopener noreferrer">OpenAI publishes 722 AI-generated math manuscripts on GitHub</a>（發布日期與撤回 3 份屬二手報導）</li><li>微軟 AI 經濟研究院，<a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2026/09/Microsoft-AI-Diffusion-Report-2026-Q2.pdf" target="_blank" rel="noopener noreferrer">Global AI Diffusion Q2 2026 Trends and Insights</a>，2026-09</li><li>台灣網路資訊中心（TWNIC），《2025 台灣網路報告》，2025-12-17；本文引用 <a href="https://technews.tw/2025/12/18/generative-ai-taiwan-people/" target="_blank" rel="noopener noreferrer">TechNews 報導</a>（二手）</li><li>資策會 MIC，<a href="https://mic.iii.org.tw/research.aspx?id=726" target="_blank" rel="noopener noreferrer">生成式 AI 消費者調查</a>，2024 Q4</li><li>萬事達卡，《2026 台灣民眾 AI 使用消費習慣調查》，經 <a href="https://udn.com/news/story/7239/9669518" target="_blank" rel="noopener noreferrer">聯合新聞網報導</a>（二手）</li><li>大社會調查中心，經 <a href="https://tw.news.yahoo.com/%E7%94%9F%E6%88%90%E5%BC%8F-ai-%E4%BD%BF%E7%94%A8%E9%A0%BB%E7%8E%87%E4%B8%8A%E5%8D%87-43-6-070259094.html" target="_blank" rel="noopener noreferrer">Yahoo 新聞報導</a>（二手）</li><li>一天一 AI，<a href="https://www.managertoday.com.tw/articles/view/73068" target="_blank" rel="noopener noreferrer">《2026 台灣工作者 AI 應用大調查》</a>，2026-08</li></ul>
 </article></main>
 <footer>
 <p>本頁為 Andrej Karpathy 於 2026 年 10 月 11 日（美國時間）X 貼文的中文深度導讀。人數與比例為原作者自述的粗估；漏斗圖的長條寬度為視覺示意。</p>
 </footer>
 </div>
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="圖片放大檢視"><button type="button" aria-label="關閉放大檢視">關閉（Esc）</button><img src="" alt=""></div>
+<script>
+(function(){
+  var box=document.getElementById('lightbox'), big=box.querySelector('img'), btn=box.querySelector('button'), last=null;
+  function open(img){last=img;big.src=img.currentSrc||img.src;big.alt=img.alt;box.classList.add('is-open');btn.focus();}
+  function close(){box.classList.remove('is-open');big.removeAttribute('src');if(last){last.focus();}}
+  document.querySelectorAll('figure img').forEach(function(img){
+    img.addEventListener('click',function(){open(img);});
+    img.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();open(img);}});
+  });
+  box.addEventListener('click',function(e){if(e.target===box||e.target===btn){close();}});
+  document.addEventListener('keydown',function(e){
+    if(!box.classList.contains('is-open'))return;
+    if(e.key==='Escape'){close();}
+    if(e.key==='Tab'){e.preventDefault();btn.focus();}
+  });
+})();
+</script>
 </body>
 </html>
