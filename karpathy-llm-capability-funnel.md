@@ -17,10 +17,19 @@ sources:
 ## 摘要
 
 - Andrej Karpathy 粗估，全球約 60 億人幾乎沒碰過大型語言模型，約 5,000 人能在內部使用最前沿的系統。他把大眾對 AI 能力的認知落差，畫成四層漏斗。
+- 他是前 OpenAI 創始成員、前 Tesla AI 總監，2026 年 5 月起在 Anthropic 做預訓練研究；他點名的兩個例子都是 OpenAI 的事。
 - 他的依據是時間軸上的觀察、自己的粗估、親身經驗和已公開的事件，貼文裡沒有引用調查或統計。
 - 他說漏斗由三件事造成：問題的大小、能力集中在可驗證又有營收的領域、能用到哪一版系統。
 - 他在最內層點名了兩個例子，Hugging Face 事件與 722 份數學手稿，指向同一個觀察：人類的審查與理解，開始跟不上產出的速度。
 - 放到台灣看，以「用過生成式 AI」為口徑，台灣比全球平均高。但各調查的每日使用比例從 9% 到 74%，差距極大；專業使用前沿 agent 的人有多少，本文查到的公開調查都沒有量到。
+
+## 他是誰
+
+Andrej Karpathy 是電腦視覺與深度學習研究者。依他的[個人網站](https://karpathy.ai)：他在多倫多大學念電腦科學與物理（2005–2009），英屬哥倫比亞大學碩士，2015 年在史丹佛取得博士學位，指導教授是李飛飛；博士期間設計並主講史丹佛第一門深度學習課程 CS231n。2015–2017 年，他是 OpenAI 的創始成員與研究科學家；2017–2022 年擔任 Tesla 的 AI 總監，帶領 Autopilot 的電腦視覺團隊；2023–2024 年回到 OpenAI，組了一個做 midtraining 與合成資料的新團隊。之後他投入 AI 教育與 YouTube 課程，維基百科記載他在 2024 年創辦 Eureka Labs（二手）。
+
+2026 年 5 月 19 日，他在 X 上發文：「Personal update: I've joined Anthropic.」，並說他認為接下來幾年的 LLM 前沿會特別關鍵、很高興回到 R&D，也仍熱衷教育，打算之後再回去做。依 TechCrunch，他在 Anthropic 做 pre-training，團隊負責人是 Nick Joseph；Anthropic 發言人（轉述）說他會成立一個用 Claude 加速預訓練研究的團隊。
+
+**導讀者按**：十月貼文發出時，他已在 Anthropic 約五個月，所以他是以前沿實驗室從業者的身分在談最內層。貼文沒有說他自己算不算那 5,000 人，也沒有說他看到的內容是否來自內部。值得注意的是，他點名的兩個外界可見的例子，Hugging Face 事件與 722 份數學手稿，都是 OpenAI 的事，不是他現任雇主的。
 
 ## 四月貼文，他先看到什麼
 
@@ -122,6 +131,17 @@ sources:
 
 **導讀者按**，有一個數字與他的描述不矛盾，但無法證明：TWNIC 報告用過的人裡 66.23% 能有效運用，願意付費訂閱的是 8.54%，付費比例不高，與他說的多數人停在免費層一致。不過沒付費也可能是用公司提供的帳號，這個數字撐不起他的結論。
 
+## 其他媒體怎麼報導
+
+貼文發出後兩三天內，有不少報導，多數是轉述：
+
+- [The Decoder](https://the-decoder.com/anthropics-andrej-karpathy-says-the-external-world-has-seen-the-preview-of-what-ai-can-actually-do/)（10/12）照他的分層轉述，稱他為 Anthropic 研究員，並把他的說法與 Sam Altman 在 G20 的類似說法並列。
+- [Startup Fortune](https://startupfortune.com/andrej-karpathy-says-the-ai-capability-gap-is-now-a-sharp-funnel/)（10/12）從商業角度切入：免費版會讓有些產品被低估，沒親自測試的董事會與投資人又會把有些產品吹過頭。
+- 台灣的[鏈新聞 ABMedia](https://abmedia.io/andrej-karpathy-ai-gap-5k-20m) 轉述四層，並補上 Hugging Face 事件與 722 份手稿的背景，說 Elon Musk 轉發了這則貼文（二手說法）。
+- 多家中文媒體的標題，以「全球只有 5000 人」為主，例如[鳳凰網](https://tech.ifeng.com/c/8x8CSYp7qqC)。
+
+**導讀者按**：我讀到的這幾篇，都沒有拿調查去驗證他的數字，也沒有台灣數據。標題把「5,000 人」當頭條，但它量的是「能在內部使用前沿系統」，60 億人量的是「幾乎沒接觸過 LLM」，兩者不是同一把尺。各家對他現職的說法也不一致：The Decoder 寫他在 Anthropic，另外兩篇只稱他為前 OpenAI、前 Tesla，而前面的第一手資料顯示他自 2026 年 5 月起在 Anthropic。
+
 ## 可以帶走的話
 
 1. 同樣說「AI」，說的可能是漏斗不同層看到的東西。先問對方站在哪一層。
@@ -136,6 +156,10 @@ sources:
 - OpenAI，[The Hugging Face incident and the road ahead](https://openai.com/index/hugging-face-incident-and-the-road-ahead/)
 - OpenAI，[openai/math（GitHub）](https://github.com/openai/math)，repo 頁面（719 份手稿、372 個系列、約 42% 已形式化）
 - AI Weekly，[OpenAI publishes 722 AI-generated math manuscripts on GitHub](https://aiweekly.co/alerts/openai-publishes-722-ai-generated-math-manuscripts-on-github)（發布日期與撤回 3 份屬二手報導）
+- Andrej Karpathy，[個人網站](https://karpathy.ai)（履歷）；[X 貼文](https://x.com/karpathy/status/2056753169888334312)，2026-05-19（加入 Anthropic）
+- TechCrunch，[OpenAI co-founder Andrej Karpathy joins Anthropic's pre-training team](https://techcrunch.com/2026/05/19/openai-co-founder-andrej-karpathy-joins-anthropics-pre-training-team/)，2026-05-19
+- 維基百科，[Andrej Karpathy](https://en.wikipedia.org/wiki/Andrej_Karpathy)（Eureka Labs 等，二手）
+- The Decoder、Startup Fortune、鏈新聞 ABMedia、鳳凰網，見「其他媒體怎麼報導」一節的連結（皆為二手報導）
 - 微軟 AI 經濟研究院，[Global AI Diffusion Q2 2026 Trends and Insights](https://www.microsoft.com/en-us/research/wp-content/uploads/2026/09/Microsoft-AI-Diffusion-Report-2026-Q2.pdf)，2026-09
 - 台灣網路資訊中心（TWNIC），《2025 台灣網路報告》，2025-12-17；本文引用 [TechNews 報導](https://technews.tw/2025/12/18/generative-ai-taiwan-people/)（二手）
 - 資策會 MIC，[生成式 AI 消費者調查](https://mic.iii.org.tw/research.aspx?id=726)，2024 Q4
